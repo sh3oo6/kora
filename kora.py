@@ -26,6 +26,8 @@ async def Matches(event):
             teamB = mach.find("div", {'class': 'teams teamB'}).text.strip()
             scores = mach.find("div", {'class': 'MResult'}).find_all('span', {'class': 'score'})
             time = mach.find("div", {'class': 'MResult'}).find('span', {'class': 'time'}).text.strip()
+            if int(time[0:2]) >= 12:
+                time = str(int(time[0:2]) - 12 ) + str(time[2:])
             score = f'  {scores[0].text.strip()} - {scores[1].text.strip()}  '
             Matches = (teamA + score + teamB + ' ' + time)
             Matches_list.append(Matches)
