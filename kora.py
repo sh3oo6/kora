@@ -1,6 +1,6 @@
 import requests,csv
 import bs4
-from time import *
+from datetime import datetime
 from telethon.sync import *
 DEX = '6140911166'
 people = 1
@@ -8,11 +8,9 @@ api_id = 2192036
 api_hash = '3b86a67fc4e14bd9dcfc2f593e75c841'
 bot_token = '5994181633:AAGllwOtQnu2geWM0oA4MRMxxywwfIbBPfo'
 bot = TelegramClient('botkora', api_id, api_hash).start(bot_token=bot_token)
-time = time()
 @bot.on(events.CallbackQuery(data="Matches"))
 async def Matches(event):
-    global time
-    s = strftime("%m/%d/%Y", gmtime(time))
+    s = datetime.now().strftime("%m/%d/%Y")
     url = f'https://www.yallakora.com/match-center/مركز-المباريات?date={s}'
     page = requests.get(url)
     src = page.content
